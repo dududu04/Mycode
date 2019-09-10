@@ -11,7 +11,7 @@ def main():
 		send_data = input("请输入要发送的数据:")
 		
 		# 如果输入的数据是exit，那么退出程序
-		if send_data = "exit":
+		if send_data == "exit":
 			break
 
 		# 可以使用socket接收发数据
