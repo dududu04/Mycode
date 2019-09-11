@@ -17,3 +17,9 @@ vim
 安装程序
 deb程序:sudo dpkg -i xxxx.deb
 
+linux常忘记的命令
+开启/关闭网卡: sudo ifconfig 网卡名 up/down
+查看所有已连接端口: netstat -ano / lsof -i:端口号
+关闭端口: kill -9 PID号
+
+
