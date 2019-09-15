@@ -1,0 +1,41 @@
+http协议规定浏览器和服务器间通讯的格式
+
+浏览器--->服务器发送的请求格式如下：
+	GET / HTTP/1.1
+	Host: www.baidu.com
+	Connection: keep-alive
+	Upgrade-Insecure-Requests: 1
+	User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.81 Safari/537.36
+	Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+	Accept-Encoding: gzip, deflate, br
+	Accept-Language: zh-CN,zh;q=0.9
+	Cookie: BAIDUID=70E5EDB74E0C50C15D3FA302FF525A6D:FG=1; PSTM=1567754979; BIDUPSID=29C38D5DDB8424B70481CC1FCE329984; 		BD_UPN=123353; H_PS_PSSID=29654_1460_21112_29523_29520_29721_29567_29221; BDORZ=B490B5EBF6F3CD402E515D22BCDA1598; delPer=0; BD_CK_SAM=1; PSINO=1; H_PS_645EC=c50530ifUuocZ6OrKIEd20wLAGAJr%2FcN8OAlcFIUDXqb71CRNRo5uQWko%2B8
+最简单的版本:
+	GET / HTTP/1.1
+	Host: 127.0.0.1:8000
+
+
+服务器--->浏览器会送的数据格式如下
+	HTTP/1.1 200 OK
+	Bdpagetype: 1
+	Bdqid: 0xf606e7ea0001ad5b
+	Cache-Control: private
+	Connection: Keep-Alive
+	Content-Encoding: gzip
+	Content-Type: text/html
+	Cxy_all: baidu+5c99cf592c9a3714dc150276500261f8
+	Date: Sat, 14 Sep 2019 12:41:34 GMT
+	Expires: Sat, 14 Sep 2019 12:41:01 GMT
+	Server: BWS/1.1
+	Set-Cookie: delPer=0; path=/; domain=.baidu.com
+	Set-Cookie: BDSVRTM=0; path=/
+	Set-Cookie: BD_HOME=0; path=/
+	Set-Cookie: H_PS_PSSID=29654_1460_21112_29523_29520_29721_29567_29221; path=/; domain=.baidu.com
+	Strict-Transport-Security: max-age=172800
+	Vary: Accept-Encoding
+	X-Ua-Compatible: IE=Edge,chrome=1
+	Transfer-Encoding: chunked
+最简单的版本:
+	HTTP/1.1 200 OK
+		
+	<h1>hahaha</h1>	

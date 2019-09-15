@@ -1,6 +1,7 @@
 import multiprocessing
 import time
 
+
 def test1():
 	while True:
 		print("-------1---------")
@@ -18,6 +19,7 @@ def main():
 	t2 = multiprocessing.Process(target=test2)	
 	t1.start()
 	t2.start()
+
 
 
 
