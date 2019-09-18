@@ -1,4 +1,5 @@
 import socket
+import re
 
 
 def service_client(new_socket):
@@ -8,22 +9,42 @@ def service_client(new_socket):
 	# GET / HTTP/1.1
 	# ....
 	request = new_socket.recv(1024).decode("utf-8")
-	print(">>>>>>>>>"*20)
-	print(request)
-	# 返回http格式的数据，给浏览器
-	# 准备发送给浏览器的数据 --- header
-	response = "HTTP/1.1 200 OK\r\n"
-	response += "\r\n"
+	# print(">>>>>>>>>"*20)
+	# print(request)
 
-	# 准备发送给浏览器的数据 --- body
-	with open("./html/index.html", "rb") as f:
+	# 切割请求为一个列表
+	request_lines = request.splitlines()	
+	print("")
+	print(">>>>>"*20)
+	print(request_lines)
+	# 提取请求的文件名 GET /index.html HTTP/1.1 get/post/put/del
+	ret = re.match(r"[^/]+(/[^ ]*)", request_lines[0])
+	if ret:
+		file_name = ret.group(1)  # 请求"127.0.0.1:7890/index.html" file_name为"/index.html"
+		print("*"*50, file_name)	
+		if file_name == "/":
+			file_name = "/index.html"	
+	
+	try:
+		f =  open("./html" + file_name, "rb")
+	except:
+		response = "HTTP/1.1 404 NOT FOUND\r\n"
+		response += "\r\n"
+		response += "------file:%s not found-----" % file_name
+		new_socket.send(response.encode("utf-8"))
+	else:
 		html_content = f.read()
+		f.close()
+		# 准备发送给浏览器的数据 --- header
+		response = "HTTP/1.1 200 OK\r\n"
+		response += "\r\n"
+		
+		# 将response header 发送
+		new_socket.send(response.encode("utf-8"))
 
-	# 将response header 发送
-	new_socket.send(response.encode("utf-8"))
+		# 将response body 发送
+		new_socket.send(html_content)
 
-	# 将response body 发送
-	new_socket.send(html_content)
 	
 	# 关闭套接字
 	new_socket.close()

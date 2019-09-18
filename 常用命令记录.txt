@@ -16,6 +16,7 @@ vim
 删除多行注释：首先用V选多行，再在命令模式下输入冒号:normal x#
 撤销: u
 反撤销：ctrl+r
+替换： 命令模式下输入:%s/被替换/替换/g   # :%s/multiprocessing/threading/g
 
 
 
