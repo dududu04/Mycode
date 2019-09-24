@@ -1,0 +1,44 @@
+重载
+在c++中 一个类有两个名字相同但形参个数或者类型不同的函数，这种情况就叫做重载
+class Son():
+	def set_info(int number):
+		……
+	def set_info(char* str):
+		……
+上述代码就叫做重载，但python中不会出现重载，因为python规定同一个类的函数名必须不相同
+
+
+
+
+
+重写
+子类中写有父类的方法，叫做重写
+class Parent(Object):
+	def __init__(self, name):
+		self.name = name
+class Son1(Parent):
+	def __init__(self, name, age):
+		self.age = age
+		Parent.__init__(self, name)
+上述代码就叫做重写
+
+
+调用父类方法的三种方式
+1. 父类名.函数名(self, 传参)
+2. super().函数名(传参)     #### 比较推荐
+3. super(指定父类名，self).函数名(传参)    
+
+
+使用super().函数名会调用父类函数，想知道父类是哪个可以使用__mro__属性
+如print(类名.__mro__)
+打印结果形如 (<class '__main__.Grandson'>,<class '__main__.Son1'>,<class '__main__.Son2'>,<class '__main__.Parent'>,<class 'object'>)
+super()和super(指定父类名，self)的区别只是 super()指定查找父类不一样，不写参数就相当于把调用super()的类传进去
+
+
+
+总结：
+1.super().__init__相对于类名.__init__，在单继承上用法基本无差
+2.但在多继承上有区别，super方法能保证每个父类的方法只会执行一次，而使用类名的方法会导致方法被执行多次
+3.多继承时，使用super方法，对父类的传参数，应该是由于python中的super的算法导致的原因，必须把参数全部传递，否则会报错。
+4.单继承时，使用super方法，则不能全部传递，只能传父类方法所需的参数，否则会报错
+5.多继承时，相对于使用类名.__init__方法，要把每个父类全部写一遍，而使用super方法，只需写一句话便执行了全部父类的方法，这也是为何使用多继承需要全部传参的一个原因。

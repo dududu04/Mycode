@@ -1,0 +1,21 @@
+导入模块常见的几种方式
+from xxx import yyy
+import xxx   # 让python解释器去加载xxx.py，再定义一个变量xxx让xxx去指向当前让解释器加载的模块
+from xxx import *
+import xxx,zzz
+from xxx import yyy,mmm
+import xxx as XXX
+
+
+
+得知模块的查找路径
+import sys
+sys.path
+
+为查找列表添加新的路径
+sys.append('/home/itcast/xxx')
+sys.insert(0, '/home/itcast/xxx')
+
+重新加载模块
+from imp import reload
+reload(aa)  # 重新加载aa模块

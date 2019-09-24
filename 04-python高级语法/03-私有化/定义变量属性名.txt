@@ -1,0 +1,4 @@
+xx:共有变量
+__xx:私有变量
+__xx__:对象的魔法对象或属性
+_x:表示别人from somemodeule import * 导不进去的属性或方法
